@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AddPostForm from "../components/AddPostForm";
 import Container from "../components/Container";
+import PostItem from "../components/PostItem";
 
 type Post = {
   id: number;
@@ -23,20 +24,20 @@ export default async function PostsPage() {
 
   return (
     <Container>
-      <h1 className="text-2xl font-bold mb-4">All Posts</h1>
+      <h1 className="text-3xl font-bold mb-6">All Posts</h1>
 
       <AddPostForm addPost={addPost} />
 
       <div className="space-y-3">
-        {posts.slice(0, 10).map((post) => (
-          <Link
-            key={post.id}
-            href={`/posts/${post.id}`}
-            className="block p-4 rounded bg-gray-800 hover:bg-gray-700"
-          >
-            {post.title}
-          </Link>
-        ))}
+        {posts.length === 0 ? (
+          <p className="text-center text-gray-500 mt-10">
+            No posts yet. <br /> Start adding something cool.
+          </p>
+        ) : (
+          posts
+            .slice(0, 10)
+            .map((post) => <PostItem key={post.id} post={post} />)
+        )}
       </div>
     </Container>
   );
