@@ -6,7 +6,7 @@ A modern blog-style web application built with Next.js (App Router) showcasing f
 
 🔥 Live Demo
 
-👉 https://nextjs-todo-app-byvc.vercel.app/
+👉 https://dev-postify-xvcl.vercel.app/
 
 ---
 
