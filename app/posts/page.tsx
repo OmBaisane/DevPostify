@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { addPost } from "../actions";
 import AddPostForm from "../components/AddPostForm";
 import Container from "../components/Container";
 import PostItem from "../components/PostItem";
@@ -7,14 +7,6 @@ type Post = {
   id: number;
   title: string;
 };
-
-async function addPost(formData: FormData) {
-  "use server";
-
-  const title = formData.get("title");
-
-  console.log("New Post : ", title);
-}
 
 export default async function PostsPage() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {

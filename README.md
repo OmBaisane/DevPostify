@@ -104,8 +104,8 @@ app/
 
 💻 Setup Instructions
 
-git clone https://github.com/OmBaisane/nextjs-todo-app
-cd nextjs-todo-app
+git clone https://github.com/OmBaisane/DevPostify
+cd DevPostify
 npm install
 npm run dev
 

@@ -1,11 +1,10 @@
+import { connectDB } from "@/lib/db";
+import Post from "@/models/Post";
+
 export async function GET() {
-  return Response.json({ message: "API working" });
-}
+  await connectDB();
 
-export async function DELETE(request: Request) {
-  const { id } = await request.json();
+  const posts = await Post.find();
 
-  console.log("Deleted on server : ", id);
-
-  return Response.json({ success: true });
+  return Response.json({ posts });
 }
