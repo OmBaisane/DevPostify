@@ -9,10 +9,11 @@ type Post = {
 };
 
 export default async function PostsPage() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  const res = await fetch("http://localhost:3000/api/posts", {
     cache: "no-store",
   });
-  const posts: Post[] = await res.json();
+  const data = await res.json();
+  const posts: Post[] = data.posts;
 
   return (
     <Container>

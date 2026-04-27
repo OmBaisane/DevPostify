@@ -2,6 +2,7 @@
 
 import { connectDB } from "@/lib/db";
 import Post from "@/models/Post";
+import { revalidatePath } from "next/cache";
 
 export async function addPost(formData: FormData) {
   await connectDB();
@@ -14,5 +15,5 @@ export async function addPost(formData: FormData) {
     title,
   });
 
-  console.log("Saved to DB");
+  revalidatePath("/posts");
 }
