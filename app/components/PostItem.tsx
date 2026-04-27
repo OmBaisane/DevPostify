@@ -5,17 +5,16 @@ import { useRouter } from "next/navigation";
 export default function PostItem({
   post,
 }: {
-  post: { id: number; title: string };
+  post: { _id: number; title: string };
 }) {
   const router = useRouter();
 
   const handleDelete = async () => {
     await fetch("/api/posts", {
       method: "DELETE",
-      body: JSON.stringify({ id: post.id }),
+      body: JSON.stringify({ id: post._id }),
     });
 
-    alert("Deleted");
     router.refresh();
   };
 
@@ -23,7 +22,10 @@ export default function PostItem({
     <div className="p-4 rounded-xl flex justify-between items-center shadow bg-gray-900 hover:scale-[1.01] transition">
       <span className="text-lg">{post.title}</span>
 
-      <button onClick={handleDelete} className="text-red-400 hover:text-red-600 transition">
+      <button
+        onClick={handleDelete}
+        className="text-red-400 hover:text-red-600 transition"
+      >
         Delete
       </button>
     </div>

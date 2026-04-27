@@ -8,3 +8,13 @@ export async function GET() {
 
   return Response.json({ posts });
 }
+
+export async function DELETE(req: Request) {
+  await connectDB();
+
+  const { id } = await req.json();
+
+  await Post.findByIdAndDelete(id);
+
+  return Response.json({ message: "Deleted" });
+}
