@@ -18,9 +18,11 @@ export default async function PostsPage() {
 
       <div className="space-y-3">
         {posts.length === 0 ? (
-          <p className="text-center mt-10 text-gray-500">
-            No posts yet <br /> Start adding something cool.
-          </p>
+          <div className="text-center text-gray-500 mt-16">
+            <p className="text-2xl mb-2">😴</p>
+            <p>No posts yet</p>
+            <p className="text-sm">Start by adding something cool 🚀</p>
+          </div>
         ) : (
           posts.map((post: any) => (
             <PostItem key={post._id.toString()} post={post} />

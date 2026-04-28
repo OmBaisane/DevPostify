@@ -13,7 +13,7 @@ export default function Home() {
         </p>
 
         <Link href="/posts">
-          <button className="mt-4 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30 hover:scale-105">
+          <button className="mt-4 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/30 hover:scale-105 active:scale-95">
             Get Started
           </button>
         </Link>

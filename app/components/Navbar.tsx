@@ -12,7 +12,10 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-gray-800">
       <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold tracking-tight">
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight hover:scale-105 active:scale-95"
+        >
           DevPostify
         </Link>
 
