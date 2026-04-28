@@ -12,9 +12,9 @@ export async function GET() {
 export async function DELETE(req: Request) {
   await connectDB();
 
-  const { _id } = await req.json();
+  const { id } = await req.json();
 
-  await Post.findByIdAndDelete(_id);
+  await Post.findByIdAndDelete(id);
 
   return Response.json({ message: "Deleted" });
 }

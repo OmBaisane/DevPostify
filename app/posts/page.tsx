@@ -8,7 +8,12 @@ import PostItem from "../components/PostItem";
 export default async function PostsPage() {
   await connectDB();
 
-  const posts = await Post.find().lean();
+  const rawPosts = await Post.find().lean();
+
+  const posts = rawPosts.map((post: any) => ({
+    ...post,
+    _id: post._id.toString(),
+  }));
 
   return (
     <Container>
