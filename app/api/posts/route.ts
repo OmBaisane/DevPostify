@@ -18,3 +18,13 @@ export async function DELETE(req: Request) {
 
   return Response.json({ message: "Deleted" });
 }
+
+export async function PUT(req: Request) {
+  await connectDB();
+
+  const { id, title } = await req.json();
+
+  const updated = await Post.findByIdAndUpdate(id, { title }, { new: true });
+
+  return Response.json({ message: "Updated", updated });
+}

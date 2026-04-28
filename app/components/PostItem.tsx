@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function PostItem({
@@ -8,6 +9,9 @@ export default function PostItem({
 }: {
   post: { _id: number; title: string };
 }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(post.title);
+
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -24,18 +28,60 @@ export default function PostItem({
     }
   };
 
+  const handleUpdate = async () => {
+    await fetch("/api/posts", {
+      method: "PUT",
+      body: JSON.stringify({
+        id: post._id,
+        title: newTitle,
+      }),
+    });
+
+    toast.success("Post updated");
+    setIsEditing(false);
+    router.refresh();
+  };
+
   return (
     <div className="flex items-center justify-between p-4 rounded-2xl bg-gray-900/60 backdrop-blur border border-gray-700 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
-      <span className="text-gray-200 font-medium tracking-wide">
-        {post.title}
-      </span>
+      {isEditing ? (
+        <div className="flex gap-2 w-full">
+          <input
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            className="flex-1 p-2 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus: ring-blue-500 transition"
+          />
 
-      <button
-        onClick={handleDelete}
-        className="text-sm px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:scale-105 active:scale-95 transition"
-      >
-        Delete
-      </button>
+          <button
+            className="text-sm px-3 py-1.5 rounded-lg bg-green-500/10 text-green-400 hover:bg-green-500/20 hover:scale-105 active:scale-95 transition"
+            onClick={handleUpdate}
+          >
+            Save
+          </button>
+        </div>
+      ) : (
+        <>
+          <span className="text-gray-200 font-medium tracking-wide">
+            {post.title}
+          </span>
+
+          <div className="flex gap-2">
+            <button
+              onClick={() => setIsEditing(true)}
+              className="text-sm px-3 py-1.5 rounded-lg bg-yellow-500/10 text-yellow-400 hover:bg-yellow-500/20 hover:scale-105 active:scale-95 transition"
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={handleDelete}
+              className="text-sm px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:scale-105 active:scale-95 transition"
+            >
+              Delete
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
