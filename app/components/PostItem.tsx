@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export default function PostItem({
   post,
 }: {
-  post: { _id: number; title: string };
+  post: { _id: number; title: string; createdAt: string };
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(post.title);
@@ -64,6 +64,9 @@ export default function PostItem({
           <span className="text-gray-200 font-medium tracking-wide">
             {post.title}
           </span>
+          <p className="text-xs text-gray-500">
+            {new Date(post.createdAt).toLocaleString()}
+          </p>
 
           <div className="flex gap-2">
             <button

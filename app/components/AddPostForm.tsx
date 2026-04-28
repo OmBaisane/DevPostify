@@ -9,6 +9,7 @@ export default function AddPostForm({
   addPost: (formData: FormData) => Promise<void>;
 }) {
   const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState("");
 
   return (
     <form
@@ -16,12 +17,15 @@ export default function AddPostForm({
         setLoading(true);
         await addPost(formData);
         toast.success("Post added");
+        setTitle("");
         setLoading(false);
       }}
       className="mb-6 flex gap-2"
     >
       <input
         type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         name="title"
         placeholder="Write something..."
         className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus: ring-blue-500 transition"

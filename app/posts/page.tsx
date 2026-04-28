@@ -18,6 +18,7 @@ export default async function PostsPage() {
   return (
     <Container>
       <h1 className="text-4xl font-semibold mb-8 tracking-tight">All Posts</h1>
+      <p className="text-sm text-gray-400 mb-4">{posts.length} posts</p>
 
       <AddPostForm addPost={addPost} />
 
