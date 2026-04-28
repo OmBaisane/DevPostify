@@ -12,7 +12,7 @@ export default async function PostsPage() {
 
   return (
     <Container>
-      <h1 className="text-3xl font-bold mb-6">All Posts</h1>
+      <h1 className="text-4xl font-semibold mb-8 tracking-tight">All Posts</h1>
 
       <AddPostForm addPost={addPost} />
 

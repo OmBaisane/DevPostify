@@ -19,12 +19,14 @@ export default function PostItem({
   };
 
   return (
-    <div className="p-4 rounded-xl flex justify-between items-center shadow bg-gray-900 hover:scale-[1.01] transition">
-      <span className="text-lg">{post.title}</span>
+    <div className="flex items-center justify-between p-4 rounded-2xl bg-gray-900/60 backdrop-blur border border-gray-700 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+      <span className="text-gray-200 font-medium tracking-wide">
+        {post.title}
+      </span>
 
       <button
         onClick={handleDelete}
-        className="text-red-400 hover:text-red-600 transition"
+        className="text-sm px-3 py-1.5 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition"
       >
         Delete
       </button>

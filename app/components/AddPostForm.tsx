@@ -7,26 +7,24 @@ export default function AddPostForm({
 }: {
   addPost: (formData: FormData) => Promise<void>;
 }) {
-  const [title, setTitle] = useState("");
-
-  const handleSubmit = async (formData: FormData) => {
-    await addPost(formData);
-    setTitle("");
-  };
+  const [loading, setLoading] = useState(false);
 
   return (
-    <form action={handleSubmit} className="mb-4 space-y-2">
-      <input
-        type="text"
-        placeholder="Write something..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        name="title"
-        className="w-full p-3 rounded-lg border border-gray-700 bg-gray-900 focus:outline-none focus:border-blue-500"
-      />
+    <form
+      action={async (formData) => {
+        setLoading(true);
+        await addPost(formData);
+        setLoading(false);
+      }}
+      className="mb-6 flex gap-2"
+    >
+      <input type="text" name="title" placeholder="Write something..." className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus: ring-blue-500 transition"/>
 
-      <button className="px-4 py-2 cursor-pointer rounded-lg bg-blue-500 hover:bg-blue-600 transition">
-        Add Post
+      <button
+        disabled={loading}
+        className="px-4 py-2 rounded-xl bg-blue-500 hover:bg-blue-600 disabled:opacity-50 transition"
+      >
+        {loading ? "Adding..." : "Add"}
       </button>
     </form>
   );
