@@ -4,7 +4,7 @@ import Container from "../components/Container";
 import PostItem from "../components/PostItem";
 
 type Post = {
-  id: number;
+  _id: number;
   title: string;
 };
 
@@ -29,7 +29,7 @@ export default async function PostsPage() {
         ) : (
           posts
             .slice(0, 10)
-            .map((post) => <PostItem key={post.id} post={post} />)
+            .map((post) => <PostItem key={post._id} post={post} />)
         )}
       </div>
     </Container>

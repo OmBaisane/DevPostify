@@ -1,15 +1,15 @@
 import Container from "@/app/components/Container";
 
 type Post = {
-  id: number;
+  _id: number;
   title: string;
   body: string;
 };
 
 export default async function PostDetail({ params }: any) {
-  const { id } = await params;
+  const { _id } = await params;
 
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${_id}`, {
     cache: "no-store",
   });
 
