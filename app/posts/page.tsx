@@ -1,24 +1,14 @@
-import { addPost } from "../actions";
-import AddPostForm from "../components/AddPostForm";
+import { connectDB } from "@/lib/db";
+import Post from "@/models/Post";
 import Container from "../components/Container";
+import AddPostForm from "../components/AddPostForm";
+import { addPost } from "../actions";
 import PostItem from "../components/PostItem";
 
-type Post = {
-  _id: number;
-  title: string;
-};
-
 export default async function PostsPage() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
-    cache: "no-store",
-  });
+  await connectDB();
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch posts");
-  }
-
-  const data = await res.json();
-  const posts: Post[] = data.posts;
+  const posts = await Post.find().lean();
 
   return (
     <Container>
@@ -28,13 +18,13 @@ export default async function PostsPage() {
 
       <div className="space-y-3">
         {posts.length === 0 ? (
-          <p className="text-center text-gray-500 mt-10">
-            No posts yet. <br /> Start adding something cool.
+          <p className="text-center mt-10 text-gray-500">
+            No posts yet <br /> Start adding something cool.
           </p>
         ) : (
-          posts
-            .slice(0, 10)
-            .map((post) => <PostItem key={post._id} post={post} />)
+          posts.map((post: any) => (
+            <PostItem key={post._id.toString()} post={post} />
+          ))
         )}
       </div>
     </Container>
