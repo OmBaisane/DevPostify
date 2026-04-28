@@ -9,7 +9,7 @@ type Post = {
 };
 
 export default async function PostsPage() {
-  const res = await fetch("/api/posts", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`, {
     cache: "no-store",
   });
 
