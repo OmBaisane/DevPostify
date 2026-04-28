@@ -9,9 +9,14 @@ type Post = {
 };
 
 export default async function PostsPage() {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("/api/posts", {
     cache: "no-store",
   });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch posts");
+  }
+
   const data = await res.json();
   const posts: Post[] = data.posts;
 
