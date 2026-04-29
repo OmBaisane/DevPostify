@@ -1,4 +1,4 @@
-export const dynamic = "force-dnamic";
+export const dynamic = "force-dynamic";
 
 import { connectDB } from "@/lib/db";
 import Post from "@/models/Post";
