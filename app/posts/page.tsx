@@ -1,3 +1,5 @@
+export const dynamic = "force-dnamic";
+
 import { connectDB } from "@/lib/db";
 import Post from "@/models/Post";
 import Container from "../components/Container";
@@ -8,7 +10,7 @@ import PostItem from "../components/PostItem";
 export default async function PostsPage() {
   await connectDB();
 
-  const rawPosts = await Post.find().lean();
+  const rawPosts = await Post.find().sort({ createdAt: -1 }).lean();
 
   const posts = rawPosts.map((post: any) => ({
     ...post,

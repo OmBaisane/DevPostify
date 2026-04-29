@@ -39,6 +39,10 @@ export async function PUT(req: Request) {
     return Response.json({ error: "Invalid Data" }, { status: 404 });
   }
 
-  const updated = await Post.findByIdAndUpdate(id, { title }, { new: true });
+  const updated = await Post.findByIdAndUpdate(
+    id,
+    { title },
+    { returnDocument: "after" },
+  );
   return Response.json({ message: "Updated", updated });
 }

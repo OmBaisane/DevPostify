@@ -27,7 +27,9 @@ export default function PostItem({
 
     if (res.ok) {
       toast.success("Post deleted");
-      router.refresh();
+      setTimeout(() => {
+        router.refresh();
+      }, 100);
     } else {
       toast.error(data.error || "Delete failed");
     }
@@ -49,7 +51,9 @@ export default function PostItem({
     if (res.ok) {
       toast.success("Post updated");
       setIsEditing(false);
-      router.refresh();
+      setTimeout(() => {
+        router.refresh();
+      }, 100);
     } else {
       toast.error(data.error || "Edit failed");
     }
