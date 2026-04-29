@@ -14,10 +14,7 @@ export async function GET() {
 
 export async function DELETE(req: Request) {
   await connectDB();
-
   const data = await req.json();
-  console.log("Delete Body: ", data);
-
   const { id } = data;
 
   if (!id) {

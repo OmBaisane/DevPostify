@@ -23,7 +23,6 @@ export default function PostItem({
     });
 
     const data = await res.json();
-    console.log("Delete Response: ", data);
 
     if (res.ok) {
       toast.success("Post deleted");
@@ -46,7 +45,6 @@ export default function PostItem({
     });
 
     const data = await res.json();
-    console.log("Edit Response : ", data);
 
     if (res.ok) {
       toast.success("Post updated");
