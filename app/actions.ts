@@ -8,9 +8,7 @@ export async function addPost(formData: FormData) {
   await connectDB();
 
   const title = formData.get("title")?.toString().trim();
-
   if (!title || title.length < 3 || title.length > 50) return;
-
   await Post.create({ title });
 
   revalidatePath("/posts");

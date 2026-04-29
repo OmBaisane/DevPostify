@@ -14,7 +14,10 @@ export async function GET() {
 
 export async function DELETE(req: Request) {
   await connectDB();
-  const { id } = await req.json();
+  const data = await req.json();
+  console.log("Body: ", data);
+
+  const { id } = data;
 
   if (!id) {
     return Response.json({ error: "Invalid ID" }, { status: 404 });

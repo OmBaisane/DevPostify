@@ -15,10 +15,8 @@ export default function PostItem({
 
   const router = useRouter();
 
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
-
   const handleDelete = async () => {
-    const res = await fetch(`${BASE_URL}/api/posts`, {
+    const res = await fetch("/api/posts", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: post._id }),
@@ -33,7 +31,7 @@ export default function PostItem({
   };
 
   const handleUpdate = async () => {
-    await fetch(`${BASE_URL}/api/posts`, {
+    await fetch("/api/posts", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
