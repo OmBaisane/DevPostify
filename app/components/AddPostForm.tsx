@@ -28,7 +28,7 @@ export default function AddPostForm({
         onChange={(e) => setTitle(e.target.value)}
         name="title"
         placeholder="Write something..."
-        className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus: ring-blue-500 transition"
+        className="flex-1 p-3 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
       />
 
       <button

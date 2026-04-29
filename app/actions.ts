@@ -9,7 +9,7 @@ export async function addPost(formData: FormData) {
 
   const title = formData.get("title")?.toString().trim();
 
-  if (!title || title.length < 3) return;
+  if (!title || title.length < 3 || title.length > 50) return;
 
   await Post.create({ title });
 

@@ -3,28 +3,35 @@ import Post from "@/models/Post";
 
 export async function GET() {
   await connectDB();
+  const posts = await Post.find().lean();
+  const cleanPosts = posts.map((p: any) => ({
+    ...p,
+    _id: p._id.toString(),
+  }));
 
-  const posts = await Post.find();
-
-  return Response.json({ posts });
+  return Response.json({ posts: cleanPosts });
 }
 
 export async function DELETE(req: Request) {
   await connectDB();
-
   const { id } = await req.json();
 
-  await Post.findByIdAndDelete(id);
+  if (!id) {
+    return Response.json({ error: "Invalid ID" }, { status: 404 });
+  }
 
+  await Post.findByIdAndDelete(id);
   return Response.json({ message: "Deleted" });
 }
 
 export async function PUT(req: Request) {
   await connectDB();
-
   const { id, title } = await req.json();
 
-  const updated = await Post.findByIdAndUpdate(id, { title }, { new: true });
+  if (!id) {
+    return Response.json({ error: "Invalid Data" }, { status: 404 });
+  }
 
+  const updated = await Post.findByIdAndUpdate(id, { title }, { new: true });
   return Response.json({ message: "Updated", updated });
 }

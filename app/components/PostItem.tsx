@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -7,16 +8,19 @@ import toast from "react-hot-toast";
 export default function PostItem({
   post,
 }: {
-  post: { _id: number; title: string; createdAt: string };
+  post: { _id: string; title: string; createdAt: string };
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(post.title);
 
   const router = useRouter();
 
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
+
   const handleDelete = async () => {
-    const res = await fetch("/api/posts", {
+    const res = await fetch(`${BASE_URL}/api/posts`, {
       method: "DELETE",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: post._id }),
     });
 
@@ -29,8 +33,9 @@ export default function PostItem({
   };
 
   const handleUpdate = async () => {
-    await fetch("/api/posts", {
+    await fetch(`${BASE_URL}/api/posts`, {
       method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: post._id,
         title: newTitle,
@@ -49,7 +54,7 @@ export default function PostItem({
           <input
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="flex-1 p-2 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus: ring-blue-500 transition"
+            className="flex-1 p-2 rounded-xl bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
 
           <button
@@ -61,12 +66,16 @@ export default function PostItem({
         </div>
       ) : (
         <>
-          <span className="text-gray-200 font-medium tracking-wide">
-            {post.title}
-          </span>
-          <p className="text-xs text-gray-500">
-            {new Date(post.createdAt).toLocaleString()}
-          </p>
+          <div className="flex flex-col">
+            <Link href={`/posts/${post._id}`}>
+              <p className="text-gray-200 font-medium tracking-wide hover:underline cursor-pointer">
+                {post.title}
+              </p>
+            </Link>
+            <p className="text-xs text-gray-500">
+              {new Date(post.createdAt).toLocaleString()}
+            </p>
+          </div>
 
           <div className="flex gap-2">
             <button
