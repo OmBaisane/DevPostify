@@ -14,8 +14,9 @@ export async function GET() {
 
 export async function DELETE(req: Request) {
   await connectDB();
+
   const data = await req.json();
-  console.log("Body: ", data);
+  console.log("Delete Body: ", data);
 
   const { id } = data;
 
@@ -23,13 +24,16 @@ export async function DELETE(req: Request) {
     return Response.json({ error: "Invalid ID" }, { status: 404 });
   }
 
-  await Post.findByIdAndDelete(id);
-  return Response.json({ message: "Deleted" });
+  const deleted = await Post.findByIdAndDelete(id);
+  return Response.json({ message: "Deleted", deleted });
 }
 
 export async function PUT(req: Request) {
   await connectDB();
-  const { id, title } = await req.json();
+
+  const data = await req.json();
+
+  const { id, title } = data;
 
   if (!id) {
     return Response.json({ error: "Invalid Data" }, { status: 404 });

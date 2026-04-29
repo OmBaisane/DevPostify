@@ -22,16 +22,19 @@ export default function PostItem({
       body: JSON.stringify({ id: post._id }),
     });
 
+    const data = await res.json();
+    console.log("Delete Response: ", data);
+
     if (res.ok) {
       toast.success("Post deleted");
       router.refresh();
     } else {
-      toast.error("Failed to delete");
+      toast.error(data.error || "Delete failed");
     }
   };
 
   const handleUpdate = async () => {
-    await fetch("/api/posts", {
+    const res = await fetch("/api/posts", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -40,9 +43,16 @@ export default function PostItem({
       }),
     });
 
-    toast.success("Post updated");
-    setIsEditing(false);
-    router.refresh();
+    const data = await res.json();
+    console.log("Edit Response : ", data);
+
+    if (res.ok) {
+      toast.success("Post updated");
+      setIsEditing(false);
+      router.refresh();
+    } else {
+      toast.error(data.error || "Edit failed");
+    }
   };
 
   return (
