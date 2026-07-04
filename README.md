@@ -1,59 +1,126 @@
 # 🚀 DevPostify
 
-A modern full-stack post management app built with Next.js, MongoDB, and Server Actions.
+A modern full-stack post management application built with Next.js, TypeScript, MongoDB, and Server Actions.
+
+---
+
+## 🌐 Live Demo
+
+🔗 https://dev-postify.vercel.app/
+
+---
 
 ## ✨ Features
 
-- 📝 Create Posts
-- 📖 Read Posts
-- ✏️ Update Posts
-- 🗑️ Delete Posts
-- ⚡ Real-time UI updates
-- 🔔 Toast notifications
-- 🎨 Premium UI (Glass effect + animations)
+- Create, Read, Update & Delete posts
+- MongoDB database integration
+- Server Actions
+- REST API routes
+- Responsive UI
+- Toast notifications
+- Loading & empty states
+- Modern UI with Tailwind CSS
+
+---
 
 ## 🛠️ Tech Stack
 
 - Next.js (App Router)
+- React
 - TypeScript
-- MongoDB + Mongoose
+- MongoDB
+- Mongoose
 - Tailwind CSS
 - Server Actions
 
-## 🌐 Live Demo
+---
 
-👉 https://dev-postify.vercel.app
+## 📂 Folder Structure
 
-## 📂 Project Structure
+```text
+app/
+components/
+api/
+lib/
+models/
+public/
+```
 
-- `app/` → Pages & Components
-- `app/api/` → API routes
-- `app/actions.ts` → Server Actions
-- `models/` → Mongoose models
-- `lib/` → DB connection
+---
 
-## ⚡ Key Learnings
+## ⚙️ Installation
 
-- Server vs Client Components
-- Real database integration
-- Full CRUD operations
-- Debugging production issues
-- Environment variables handling
-
-## 🚀 Getting Started
+Clone the repository
 
 ```bash
-git clone https://github.com/OmBaisane/DevPostify
-cd devpostify
-npm install
-npm run dev
-
-📌 Future Improvements
-Authentication (Login/Signup)
-Dark/Light mode
-Pagination
-Search & filter
-
-🙌 Author
-Made with 💻 by Om Baisane
+git clone https://github.com/OmBaisane/DevPostify.git
 ```
+
+Go into the project
+
+```bash
+cd DevPostify
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create a `.env.local` file and add:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+```
+
+Run the development server
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📚 Key Learnings
+
+- Next.js App Router
+- Server vs Client Components
+- Server Actions
+- MongoDB & Mongoose
+- Full CRUD Operations
+- Production debugging
+- Environment Variables
+
+---
+
+## 🔮 Future Improvements
+
+- JWT Authentication
+- User Profiles
+- Likes & Comments
+- Image Uploads
+- Pagination
+- Search & Filtering
+- Dark Mode
+
+---
+
+## 📫 Contact
+
+- Portfolio : https://portfolio-nine-phi-ry8fa70ws1.vercel.app
+- GitHub : https://github.com/OmBaisane
+- LinkedIn : https://www.linkedin.com/in/om-baisane-b96625346
+- Email : ombaisane29@gmail.com
+
+---
+
+## 📄 License
+
+MIT License
